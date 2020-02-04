@@ -1,0 +1,25 @@
+syntax = "proto2";
+package main;
+
+message InterplanetaryMessage {
+  enum Type {
+    TEXT_MESSAGE = 0;
+    ENCRYPTED_TEXT_MESSAGE = 1;
+  }
+
+  required Type type = 1;
+  optional TextMessage textMessage = 2;
+  optional EncryptedTextMessage encryptedTextMessage = 3;
+}
+
+message TextMessage  {
+  required int64 created = 1;
+  required string text = 2;
+}
+
+message EncryptedTextMessage  {
+  required bytes iv = 1;
+  required bytes message_key = 2;
+  required int64 unpadded_len = 3;
+  required bytes data = 4;
+}
